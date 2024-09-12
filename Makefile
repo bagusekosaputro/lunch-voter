@@ -1,5 +1,6 @@
-IMAGE_NAME ?= lunch_voter
-TAG ?= $(shell git rev-parse --short HEAD`)
+DOCKER_REGISTRY ?= lunch.voter.io
+IMAGE_NAME ?= lunch-voter
+TAG ?= $(shell git rev-parse --short HEAD)
 LOCAL_DB_NAME ?= lunch_voter
 
 .DEFAULT_GOAL := dev
@@ -24,7 +25,7 @@ migrate-down:
 	-database "postgres://postgres:12345@localhost:5432/$(LOCAL_DB_NAME)?sslmode=disable" down
 
 docker-build:
-	docker build --no-cache -t=$(IMAGE_NAME):$(TAG) .
+	docker build --no-cache -t=$(DOCKER_REGISTRY)/$(IMAGE_NAME):$(TAG) .
 
 docker-push:
 	docker push $(DOCKER_REGISTRY)/$(IMAGE_NAME):$(TAG)
