@@ -1,0 +1,30 @@
+Task Overview:
+
+Our company needs an internal service for its employees to help them decide on a lunch place. Your task is to build a backend service that supports the following features:
+
+System Overview:
+
+Restaurants upload their daily menus via API.
+Employees vote on menus using a mobile app (for which the backend needs to be implemented).
+The backend must support both old and new versions of the app (the app sends its version in the request headers).
+Required APIs:
+
+Authentication
+Creating a restaurant
+Uploading a menu for the restaurant (there should be a menu for each day)
+Creating an employee
+Getting the current day's menu
+Voting for a restaurant menu
+The old API version accepts one menu vote.
+The new API version allows users to vote for the top three menus, with respective points (1 to 3).
+Getting results for the current day
+Technical Requirements:
+
+The solution should be built using Python, preferably with Django Rest Framework (other frameworks are acceptable).
+The app should be containerized.
+Include project and API documentation.
+Implement unit tests.
+Extra Points:
+
+High Availability (HA) Cloud Architecture Diagram (preferably on Azure).
+Usage of linting and static typing tools.

@@ -1,0 +1,8 @@
+export ENV="development"
+export DB_HOST="localhost"
+export DB_USER="lunch_voter_user"
+export DB_PASSWORD="Admin12345"
+export DB_NAME="lunch_voter"
+export SECRET_KEY="85483c296f723f0aa02b98c783d9985d7e41253942cb0ba6af7651335fbb81f8"
+export SECRET_ALG="HS256"
+export SERVER_KEY="bHVuY2gtdm90ZXItYXBw"

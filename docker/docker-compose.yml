@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:14-alpine
+    container_name: lunch_voter_db
+    ports:
+      - 5432:5432
+#    volumes:
+#      - ~/apps/postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=Admin12345
+      - POSTGRES_USER=lunch_voter_user
+      - POSTGRES_DB=lunch_voter
+
+  lunch-voter:
+    depends_on: postgres
+    image: lunch-voter:latest

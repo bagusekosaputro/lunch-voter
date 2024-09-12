@@ -1,0 +1,7 @@
+fastapi[standard]
+psycopg2-binary
+sqlmodel
+pyjwt
+pydantic[email]
+pytest
+bcrypt
