@@ -5,3 +5,4 @@ pyjwt
 pydantic[email]
 pytest
 bcrypt
+mock
