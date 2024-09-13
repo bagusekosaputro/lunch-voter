@@ -7,7 +7,7 @@ from fastapi import FastAPI, Header, status, HTTPException, UploadFile
 from fastapi.openapi.models import HTTPBearer
 from fastapi.params import Depends, Path
 from fastapi.security import APIKeyHeader
-from typing_extensions import Annotated
+from typing_extensions import Annotated, Optional
 
 from src.features.employees.authentication.generate_access_token.request import TokenRequest
 from src.features.employees.authentication.generate_access_token.usecase import GenerateAccessTokenUseCase
@@ -18,6 +18,7 @@ from src.features.restaurants.create_menu.usecase import CreateMenuUsaCase
 from src.features.restaurants.create_restaurant.request import CreateRestaurantRequest
 from src.features.restaurants.create_restaurant.usecase import CreateRestaurantUseCase
 from src.features.restaurants.retrieve_menu.usecase import RetrieveMenuUseCase
+from src.features.restaurants.retrieve_vote_result.usecase import RetriveVoteResultUseCase
 from src.features.restaurants.vote_menu.request import VoteMenuRequest
 from src.features.restaurants.vote_menu.usecase import VoteMenuUseCase
 from src.utils.token_util import TokenUtil
@@ -73,14 +74,14 @@ def upload_menu(menu: UploadFile, restaurant_code: Annotated[str, Path(title="Th
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid restaurant credential")
 
 @app.get("/menus")
-def get_menu_by_date(date: datetime, authorization: Annotated[Union[str, None], Header()]):
+def get_menu_by_date(date: Optional[datetime], authorization: Annotated[Union[str, None], Header()]):
     authorization_arr = authorization.split(" ")
     valid_token = token_util.get_user_info(authorization_arr[1])
     if not valid_token.get("valid"):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token")
 
     usecase = RetrieveMenuUseCase()
-    return usecase.get_menus_by_date(date)
+    return {"data": usecase.get_menus_by_date(date)}
 
 @app.post("/menus/vote", status_code=status.HTTP_201_CREATED)
 def vote_menu(votes: list[VoteMenuRequest], authorization: Annotated[Union[str, None], Header()], api_version: str = Depends(api_version_scheme)):
@@ -106,6 +107,16 @@ def vote_menu(votes: list[VoteMenuRequest], authorization: Annotated[Union[str, 
     else:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="API version is not supported")
 
+@app.get("/votes/result")
+def get_vote_result(authorization: Annotated[Union[str, None], Header()]):
+    authorization_arr = authorization.split(" ")
+    valid_token = token_util.get_user_info(authorization_arr[1])
+    if not valid_token.get("valid"):
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token")
+
+    usecase = RetriveVoteResultUseCase()
+    return {"data":usecase.result()}
+
 # Endpoints for authentication
 @app.post("/access_token")
 def generate_access_token(data: TokenRequest):
@@ -115,10 +126,3 @@ def generate_access_token(data: TokenRequest):
       return access_token
 
     raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid user")
-
-
-@app.post("/validate_token")
-def validate_access_token(authorization: Annotated[Union[str, None], Header()]):
-    usecase = TokenValidationUseCase()
-    response = usecase.validate_token(authorization)
-    return response

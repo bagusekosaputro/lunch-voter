@@ -7,21 +7,21 @@ services:
 #    volumes:
 #      - ~/apps/postgres:/var/lib/postgresql/data
     env_file: "db.env"
-#    networks:
-#      - lv-network
+    networks:
+      - lv-network
 
-#  lunch-voter-service:
-#    depends_on:
-#      - db-service
-#    image: lunch-voter
-#    container_name: lunch-voter-service
-#    env_file: "service.env"
-#    ports:
-#      - 9000:8000
-#    networks:
-#      - lv-network
+  lunch-voter-service:
+    depends_on:
+      - db-service
+    image: lunch-voter
+    container_name: lunch-voter-service
+    env_file: "service.env"
+    ports:
+      - 9000:8000
+    networks:
+      - lv-network
 
-#networks:
-#  lv-network:
-#    name: lv-network
-#    driver: bridge
+networks:
+  lv-network:
+    name: lv-network
+    driver: bridge

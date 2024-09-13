@@ -1,0 +1,2 @@
+curl --location 'http://127.0.0.1:8000/votes/result' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImJhZ3VzIiwiZW1haWwiOiJiYWd1c0BtYWlsLmNvbSIsImV4cCI6MTcyNjIxNjQyOH0.oOx1Jw6gBlRErER8LGe1XqDLkQSy5ejVuHA837pLZpU'
