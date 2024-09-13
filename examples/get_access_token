@@ -1,0 +1,6 @@
+curl --location 'http://127.0.0.1:8000/access_token' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "email": "james@mail.com",
+    "password": "abc12345"
+}'

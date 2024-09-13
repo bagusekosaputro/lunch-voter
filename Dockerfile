@@ -4,9 +4,6 @@ WORKDIR /app
 
 COPY . /app
 
-RUN pip3 install -r requirements.txt
+RUN pip3 install --no-cache-dir --upgrade -r requirements.txt
 
-EXPOSE 8000
-COPY ./runserver.sh /
-RUN chmod +x /runserver.sh
-ENTRYPOINT ["/runserver.sh"]
+CMD ["fastapi", "run", "src/main.py", "--port", "8000"]

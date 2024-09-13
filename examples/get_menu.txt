@@ -1,0 +1,2 @@
+curl --location 'http://127.0.0.1:8000/menus?date=2024-09-12' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImJhZ3VzIiwiZW1haWwiOiJiYWd1c0BtYWlsLmNvbSIsImV4cCI6MTcyNjEzNDUzN30.x8I_oBhUf2qXWphJJlA8Vce8CNn2rvgtm7dS-Qzcel0'

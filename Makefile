@@ -25,7 +25,7 @@ migrate-down:
 	-database "postgres://postgres:12345@localhost:5432/$(LOCAL_DB_NAME)?sslmode=disable" down
 
 docker-build:
-	docker build --no-cache -t=$(DOCKER_REGISTRY)/$(IMAGE_NAME):$(TAG) .
+	docker build --no-cache -t=$(IMAGE_NAME):latest .
 
 docker-push:
 	docker push $(DOCKER_REGISTRY)/$(IMAGE_NAME):$(TAG)

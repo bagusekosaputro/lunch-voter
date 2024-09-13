@@ -1,0 +1,9 @@
+curl --location 'http://localhost:9000/employees' \
+--header 'x-api-key: YkhWdVkyZ3RkbTkwWlhJdFlYQnc=' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJleHAiOjE3MjY3MTc5MDMsImlhdCI6MTcyNTUwODMwMywibmFtZSIgOiAiIiwgImVtYWlsIiA6ICJoYWJpYmkrMjg2QHN0eWxldGhlb3J5LmNvIiwgInVzZXJfaWQiIDogNDA1MjE0LCAidG9rZW5fdXNlIiA6ICJzdHlsZXRoZW9yeSIsICJjdXN0b206cm9sZSIgOiAiY3VzdG9tZXIifQ.fGHk34TrwxIdROLddaYXySs9OKvRE7GDAM8pz-XzJ6wUnqlSf-xSPD92xxyjD92nbhYMztJHVbFNB1EH3JjVkQ' \
+--data-raw '{
+    "name": "bagus",
+    "email": "bagus@mail.com",
+    "password": "abc12345"
+}'

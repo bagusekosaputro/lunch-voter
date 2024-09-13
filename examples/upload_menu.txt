@@ -1,0 +1,3 @@
+curl --location 'http://127.0.0.1:8000/restaurants/RUMAH-MAKAN-PAD-RST/menus' \
+--header 'x-api-key: ODU0ODNjMjk2ZjcyM2YwYWEwMmI5OGM3ODNkOTk4NWQ3ZTQxMjUzOTQyY2IwYmE2YWY3NjUxMzM1ZmJiODFmOF9SVU1BSC1NQUtBTi1QQUQtUlNU' \
+--form 'menu=@"/Documents/menu_template.csv"'
